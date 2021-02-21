@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const EnderecoSchema = new mongoose.Schema({
     rua: String, 
     numero: String,
+    complemento: String,
     cep: String,
     bairro: String,
     user: {

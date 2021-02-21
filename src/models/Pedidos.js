@@ -4,6 +4,7 @@ const PedidoSchema = mongoose.Schema({
   pagamento: String,
   produto: String,
   quantidade: String,
+  troco: Number,
   user: { 
       type: mongoose.Schema.Types.ObjectId, 
       ref: "User" 

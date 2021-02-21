@@ -2,7 +2,15 @@ const Pedidos = require("../models/Pedidos");
 
 module.exports = {
   async store(req, res) {
-    const { pagamento, produto, quantidade, total, user, endereco } = req.body;
+    const {
+      pagamento,
+      produto,
+      quantidade,
+      total,
+      user,
+      endereco,
+      troco,
+    } = req.body;
 
     const pedidos = await Pedidos.create({
       pagamento,
@@ -10,6 +18,7 @@ module.exports = {
       quantidade,
       total,
       user,
+      troco,
       endereco,
     });
     return res.json(pedidos);
@@ -32,7 +41,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    const { pagamento, produto, quantidade, total, endereco } = req.body;
+    const { pagamento, produto, quantidade, total, endereco, troco } = req.body;
     const { pedido_id } = req.headers;
 
     const pedidos = await Pedidos.findByIdAndUpdate(
@@ -42,6 +51,7 @@ module.exports = {
         produto,
         quantidade,
         total,
+        troco,
         endereco,
       },
       { new: true }
@@ -55,6 +65,6 @@ module.exports = {
 
     await Pedidos.findByIdAndDelete(pedido_id);
 
-    return res.json({'message' : 'Ok. Pedido deletado com sucesso!'});
+    return res.json({ message: "Ok. Pedido deletado com sucesso!" });
   },
 };
